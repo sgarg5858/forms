@@ -1,0 +1,18 @@
+<form (ngSubmit)="onSubmit($event)" ngNativeValidate>
+  <label id="email">Enter your email</label>
+  <input
+    for="email"
+    name="email"
+    [(ngModel)]="userCredentials.email"
+    type="email"
+  />
+  <label id="password">Enter your password</label>
+  <input
+    for="password"
+    name="password"
+    required
+    [(ngModel)]="userCredentials.password"
+    type="password"
+  />
+  <button type="submit">Login</button>
+</form>

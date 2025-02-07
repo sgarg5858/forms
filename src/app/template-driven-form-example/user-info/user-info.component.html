@@ -1,0 +1,221 @@
+<div class="section section--form-container">
+  <mat-card>
+    <form
+      #userInfoForm="ngForm"
+      (ngSubmit)="submitUserData($event, userInfoForm)"
+      (reset)="resetForm($event)"
+    >
+      <h2>User Info</h2>
+      <mat-form-field appearance="outline">
+        <mat-label>Enter your First name</mat-label>
+        <input
+          matInput
+          #firstName="ngModel"
+          name="firstName"
+          required
+          minlength="2"
+          [bannedWords]="bannedWords"
+          [(ngModel)]="user.firstName"
+          placeholder="Your First name"
+        />
+
+        <mat-error *ngIf="firstName.dirty && firstName.hasError('required')">
+          First name is required
+        </mat-error>
+
+        <mat-error *ngIf="firstName.touched && firstName.hasError('minlength')">
+          First name should atleast contain
+          {{ firstName.getError("minlength")?.requiredLength }} letters
+        </mat-error>
+
+        <mat-error
+          *ngIf="firstName.touched && firstName.hasError('bannedWords')"
+        >
+          {{ firstName.getError("bannedWords") }}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Enter your Last name</mat-label>
+        <input
+          matInput
+          #lastname="ngModel"
+          name="lastName"
+          required
+          minlength="2"
+          [(ngModel)]="user.lastName"
+          placeholder="Your Last name"
+        />
+        <mat-error *ngIf="lastname.touched && lastname.hasError('required')">
+          Last name is required
+        </mat-error>
+        <mat-error *ngIf="lastname.touched && lastname.hasError('minlength')">
+          Last name should atleast contain
+          {{ lastname.getError("minlength")?.requiredLength }} letters
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Enter your Email Address</mat-label>
+        <input
+          matInput
+          name="emailAddress"
+          #emailCtrl="ngModel"
+          checkIfEmailIsAlreadyRegistered
+          required
+          email
+          [(ngModel)]="user.emailAddress"
+          placeholder="Your Email Address"
+          [ngModelOptions]="{ updateOn: 'blur' }"
+        />
+        <mat-hint *ngIf="emailCtrl.pending">
+          We are checking your email....
+        </mat-hint>
+        <mat-error
+          *ngIf="
+            !emailCtrl.pending && emailCtrl.hasError('emailAlreadyRegistered')
+          "
+        >
+          Seems like this email is already registered
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Enter your Contact number</mat-label>
+        <input
+          matInput
+          name="contactNumber"
+          required
+          minlength="10"
+          maxlength="10"
+          [(ngModel)]="user.contactNumber"
+          placeholder="Your Contact number"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Enter your Nationality</mat-label>
+        <input
+          matInput
+          name="nationality"
+          required
+          [(ngModel)]="user.nationality"
+          placeholder="Your Nationality "
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Your date of birth</mat-label>
+        <input
+          name="dateOfBirth"
+          required
+          [(ngModel)]="user.dateOfBirth"
+          matInput
+          [matDatepicker]="picker"
+        />
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker">
+          <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+        </mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <fieldset [ngModelGroup]="'password'" passwordShouldMatch>
+        <legend>Your Password:</legend>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Enter your Password</mat-label>
+          <input
+            type="password"
+            matInput
+            required
+            name="password"
+            [(ngModel)]="user.password.password"
+          />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Confirm your password</mat-label>
+          <input
+           type="password"
+            matInput
+            #confirmPassword="ngModel"
+            required
+            name="confirmPassword"
+            [(ngModel)]="user.password.confirmPassword"
+          />
+          <mat-error
+            *ngIf="
+              confirmPassword.touched &&
+              confirmPassword.hasError('passwordsDontMatch')
+            "
+          >
+            Passwords do not match
+          </mat-error>
+        </mat-form-field>
+      </fieldset>
+
+      <fieldset [ngModelGroup]="'currentAddress'">
+        <legend>Your Address:</legend>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Enter your post code</mat-label>
+          <input
+            matInput
+            required
+            name="postcode"
+            [(ngModel)]="user.currentAddress.postcode"
+          />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Enter your House/Apartment Number</mat-label>
+          <input
+            matInput
+            required
+            name="HouseOrApartmentNo"
+            [(ngModel)]="user.currentAddress.HouseOrApartmentNo"
+          />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Enter your street number</mat-label>
+          <input
+            matInput
+            required
+            name="street"
+            [(ngModel)]="user.currentAddress.street"
+          />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Enter your county</mat-label>
+          <input
+            matInput
+            required
+            name="county"
+            [(ngModel)]="user.currentAddress.county"
+          />
+        </mat-form-field>
+      </fieldset>
+
+      <mat-card-actions>
+        <button
+          mat-stroked-button
+          [disabled]="userInfoForm.pending"
+          type="reset"
+        >
+          Reset
+        </button>
+        <button
+          mat-raised-button
+          [disabled]="userInfoForm.pending"
+          color="primary"
+          type="submit"
+        >
+          Submit
+        </button>
+      </mat-card-actions>
+    </form>
+  </mat-card>
+</div>

@@ -1,0 +1,57 @@
+.section {
+    
+    &--form-container{
+        max-width: 600px;
+        min-width: 350px;
+        width: auto;
+        margin: 50px ;
+
+        mat-card{
+            border-radius: 8px;
+        }
+
+        @media screen and (min-width:500px) {
+            width: 400px;
+        }
+
+        @media screen and (min-width:900px) {
+            width: 600px;
+        }
+
+        form{
+            display: flex;
+            flex-direction: column;
+            padding: 50px;
+            align-items: center;
+
+            mat-form-field{
+                margin: 10px;
+                min-width: 250px;
+                max-width: 300px;
+
+                @media screen and (min-width:500px) {
+                    width: 300px;
+                }
+            }
+
+            fieldset{
+                margin-top: 32px;
+                padding: 25px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                border-radius: 8px;
+            }
+
+            mat-card-actions{
+                width: 100%;
+                margin-top: 40px;
+                display: flex;
+                justify-content: space-around;
+            }
+        }
+
+        
+    }
+}

@@ -1,0 +1,114 @@
+<div class="section section--form-container">
+  <mat-card>
+    <form [formGroup]="userInfo" (ngSubmit)="submitForm($event)">
+      <h2>User Info</h2>
+      <mat-form-field appearance="outline">
+        <mat-label>Enter your First name</mat-label>
+        <input
+          matInput
+          name="firstName"
+          formControlName="firstName"
+          placeholder="Your first name"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Enter your last name</mat-label>
+        <input
+          matInput
+          name="lastName"
+          formControlName="lastName"
+          placeholder="Your last name"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Enter your email</mat-label>
+        <input
+          matInput
+          name="email"
+          formControlName="email"
+          placeholder="Your email"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Enter your contact number</mat-label>
+        <input
+          matInput
+          name="contactNumber"
+          formControlName="contactNumber"
+          placeholder="Your contact number"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Enter your nationality</mat-label>
+        <input
+          matInput
+          name="nationality"
+          formControlName="nationality"
+          placeholder="Your nationality"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Your date of birth</mat-label>
+        <input
+          name="dateOfBirth"
+          required
+          matInput
+          formControlName="dateOfBirth"
+          [matDatepicker]="picker"
+        />
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker">
+          <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+        </mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <fieldset [formGroupName]="'password'">
+        <legend>Your Password:</legend>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Enter your Password</mat-label>
+          <input
+            type="password"
+            matInput
+            required
+            name="password"
+            formControlName="password"
+          />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Confirm your password</mat-label>
+          <input
+            type="password"
+            matInput
+            required
+            formControlName="confirmPassword"
+          />
+        </mat-form-field>
+      </fieldset>
+
+      <fieldset [formGroupName]="'skills'" *ngIf="skills$ | async as skills">
+        <legend>Please tell us about your skills:</legend>
+
+        <mat-form-field *ngFor="let skill of skills"  appearance="outline">
+            <mat-label>Are you familiar with {{skill}}</mat-label>
+            <mat-select [formControlName]="skill">
+              <mat-option value="yes">Yes</mat-option>
+              <mat-option value="no">No</mat-option>
+            </mat-select>
+          </mat-form-field>
+      </fieldset>
+
+      <mat-card-actions>
+        <button mat-stroked-button type="reset">Reset</button>
+        <button mat-raised-button color="primary" type="submit">Submit</button>
+      </mat-card-actions>
+    </form>
+  </mat-card>
+</div>
