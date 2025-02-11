@@ -91,18 +91,29 @@
             formControlName="confirmPassword"
           />
         </mat-form-field>
+        <mat-error
+          *ngIf="
+            userInfo.get('password')?.get('confirmPassword')?.dirty &&
+            userInfo
+              .get('password')
+              ?.get('confirmPassword')
+              ?.hasError('passwordsDontMatch')
+          "
+        >
+        Passwords do not match
+        </mat-error>
       </fieldset>
 
       <fieldset [formGroupName]="'skills'" *ngIf="skills$ | async as skills">
         <legend>Please tell us about your skills:</legend>
 
-        <mat-form-field *ngFor="let skill of skills"  appearance="outline">
-            <mat-label>Are you familiar with {{skill}}</mat-label>
-            <mat-select [formControlName]="skill">
-              <mat-option value="yes">Yes</mat-option>
-              <mat-option value="no">No</mat-option>
-            </mat-select>
-          </mat-form-field>
+        <mat-form-field *ngFor="let skill of skills" appearance="outline">
+          <mat-label>Are you familiar with {{ skill }}</mat-label>
+          <mat-select [formControlName]="skill">
+            <mat-option value="yes">Yes</mat-option>
+            <mat-option value="no">No</mat-option>
+          </mat-select>
+        </mat-form-field>
       </fieldset>
 
       <mat-card-actions>

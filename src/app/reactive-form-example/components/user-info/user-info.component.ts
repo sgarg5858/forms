@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../../services/user.service';
 import { Observable, tap } from 'rxjs';
+import { FormValidators } from 'src/app/validators/form-validators';
 
 @Component({
   selector: 'app-user-info',
@@ -52,7 +53,7 @@ export class UserInfoComponent implements OnInit {
     password: new FormGroup({
       password: new FormControl('123456', [Validators.required]),
       confirmPassword: new FormControl('12', [Validators.required]),
-    }),
+    },{validators:[FormValidators.passwordShouldMatch]}),
     skills: new FormGroup<{ [key: string]: FormControl<'yes' | 'no'> }>({}),
   });
 
