@@ -68,6 +68,12 @@
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
 
+      <div class="your-bio" formControlName="bio" contenteditable>
+        <h4 data-placeholder="Tell us about yourself..">Tell us about yourself..</h4>
+      </div>
+
+      <app-rating-picker formControlName="ratingPicker"></app-rating-picker>
+
       <fieldset [formGroupName]="'password'">
         <legend>Your Password:</legend>
 
@@ -91,6 +97,7 @@
             formControlName="confirmPassword"
           />
         </mat-form-field>
+
         <mat-error
           *ngIf="
             userInfo.get('password')?.get('confirmPassword')?.dirty &&

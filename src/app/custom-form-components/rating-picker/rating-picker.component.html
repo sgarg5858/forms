@@ -1,0 +1,22 @@
+<ul class="rating-options"  [ngClass]="{disabled:_disabled}">
+    <li 
+    [ngClass]="{active: rating ==='great'}"
+    (click)="setRating('great')"
+    tabindex="0"
+    >Great</li>
+    <li 
+    [ngClass]="{active: rating === 'good'}"
+    (click)="setRating('good')"
+    tabindex="0"
+    >Good</li>
+    <li 
+    [ngClass]="{active: rating === 'neutral'}" 
+    (click)="setRating('neutral')"
+    tabindex="0"
+    >Neutral</li>
+    <li 
+    [ngClass]="{active: rating === 'bad'}" 
+    (click)="setRating('bad')"
+    tabindex="0"
+    >Bad</li>
+</ul>

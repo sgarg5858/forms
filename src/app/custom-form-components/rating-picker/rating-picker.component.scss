@@ -1,0 +1,23 @@
+:host{
+    width: 100%;
+}
+ul{
+    list-style: none;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding-left: 0;
+    li{
+        padding: 5px;
+        border: 1px solid black;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+}
+.active{
+    background-color: antiquewhite;
+}
+.disabled{
+    pointer-events: none;
+    opacity: 0.5;
+}

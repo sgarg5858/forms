@@ -4,6 +4,8 @@ import { UserInfoComponent } from './components/user-info/user-info.component';
 import { RouterModule } from '@angular/router';
 import { MaterialComponentsModule } from '../material-components/material-components.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DirectivesModule } from '../directives/directives.module';
+import { CustomFormComponentsModule } from '../custom-form-components/custom-form-components.module';
 
 @NgModule({
   declarations: [UserInfoComponent],
@@ -11,7 +13,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     ReactiveFormsModule,
     RouterModule.forChild([{ path: '', component: UserInfoComponent }]),
-    MaterialComponentsModule
+    MaterialComponentsModule,
+    DirectivesModule,
+    CustomFormComponentsModule
   ],
 })
 export class ReactiveFormExampleModule {}

@@ -50,14 +50,20 @@ export class UserInfoComponent implements OnInit {
       Validators.required,
       Validators.minLength(2),
     ]),
-    password: new FormGroup({
-      password: new FormControl('123456', [Validators.required]),
-      confirmPassword: new FormControl('12', [Validators.required]),
-    },{validators:[FormValidators.passwordShouldMatch]}),
+    bio: new FormControl('', [Validators.required]),
+    ratingPicker: new FormControl('neutral', {validators:[Validators.required],}),
+    password: new FormGroup(
+      {
+        password: new FormControl('123456', [Validators.required]),
+        confirmPassword: new FormControl('12', [Validators.required]),
+      },
+      { validators: [FormValidators.passwordShouldMatch] }
+    ),
     skills: new FormGroup<{ [key: string]: FormControl<'yes' | 'no'> }>({}),
   });
 
   submitForm(event: Event) {
+    this.userInfo.controls.ratingPicker.disable();
     console.log(event, this.userInfo.value);
   }
 }
