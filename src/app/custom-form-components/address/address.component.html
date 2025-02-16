@@ -1,0 +1,43 @@
+<fieldset [formGroup]="form">
+  <legend>You Address</legend>
+  <mat-form-field appearance="outline">
+    <mat-label>Enter your post code</mat-label>
+    <input matInput formControlName="postCode" />
+    <mat-error *ngIf="form.get('postCode')?.hasError('required')">
+      Postcode is required
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Enter your house no </mat-label>
+    <input matInput formControlName="apartmentNumber" />
+    <mat-error *ngIf="form.get('apartmentNumber')?.hasError('required')">
+      Apartment Number is required
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Enter your street number</mat-label>
+    <input matInput formControlName="streetNumber" />
+
+    <mat-error *ngIf="form.get('streetNumber')?.hasError('required')">
+      Street Number is required
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Enter your county</mat-label>
+    <input matInput formControlName="county" />
+
+    <mat-error *ngIf="form.get('county')?.hasError('required')">
+      County is required
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Enter your country</mat-label>
+    <input matInput formControlName="country" />
+    <mat-error *ngIf="form.get('country')?.hasError('required')">
+      Country is required
+    </mat-error>
+  </mat-form-field>
+</fieldset>

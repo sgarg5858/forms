@@ -12,6 +12,7 @@ import { FormValidators } from 'src/app/validators/form-validators';
 export class UserInfoComponent implements OnInit {
   constructor(private readonly userService: UserService) {}
 
+  formSubmitted = false;
   skills$: Observable<string[]> | undefined;
 
   ngOnInit(): void {
@@ -20,7 +21,7 @@ export class UserInfoComponent implements OnInit {
         skills.forEach((skill) => {
           (<FormGroup>this.userInfo.get('skills')).addControl(
             skill,
-            new FormControl('', [Validators.required])
+            new FormControl('yes', [Validators.required])
           );
         })
       )
@@ -28,7 +29,7 @@ export class UserInfoComponent implements OnInit {
   }
 
   userInfo = new FormGroup({
-    firstName: new FormControl('Sanjay', {
+    firstName: new FormControl('', {
       nonNullable: true,
       validators: [Validators.required, Validators.minLength(2)],
     }),
@@ -50,12 +51,11 @@ export class UserInfoComponent implements OnInit {
       Validators.required,
       Validators.minLength(2),
     ]),
-    bio: new FormControl('', [Validators.required]),
-    ratingPicker: new FormControl('neutral', {validators:[Validators.required],}),
+    address: new FormControl(),
     password: new FormGroup(
       {
         password: new FormControl('123456', [Validators.required]),
-        confirmPassword: new FormControl('12', [Validators.required]),
+        confirmPassword: new FormControl('123456', [Validators.required]),
       },
       { validators: [FormValidators.passwordShouldMatch] }
     ),
@@ -63,7 +63,9 @@ export class UserInfoComponent implements OnInit {
   });
 
   submitForm(event: Event) {
-    this.userInfo.controls.ratingPicker.disable();
+    this.formSubmitted=true;
+    console.log(this.userInfo);
+    if(this.userInfo.invalid) return;
     console.log(event, this.userInfo.value);
   }
 }

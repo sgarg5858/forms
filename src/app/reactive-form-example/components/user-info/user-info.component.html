@@ -10,6 +10,12 @@
           formControlName="firstName"
           placeholder="Your first name"
         />
+        <mat-error
+          *ngIf="
+            userInfo.get('firstName')?.hasError('required')
+          "
+          >First name is required</mat-error
+        >
       </mat-form-field>
 
       <mat-form-field appearance="outline">
@@ -68,11 +74,10 @@
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
 
-      <div class="your-bio" formControlName="bio" contenteditable>
-        <h4 data-placeholder="Tell us about yourself..">Tell us about yourself..</h4>
-      </div>
-
-      <app-rating-picker formControlName="ratingPicker"></app-rating-picker>
+      <app-address
+        [formSubmitted]="formSubmitted"
+        formControlName="address"
+      ></app-address>
 
       <fieldset [formGroupName]="'password'">
         <legend>Your Password:</legend>
@@ -107,7 +112,7 @@
               ?.hasError('passwordsDontMatch')
           "
         >
-        Passwords do not match
+          Passwords do not match
         </mat-error>
       </fieldset>
 
