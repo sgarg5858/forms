@@ -29,6 +29,37 @@
           [type]="control.value.type"
           [id]="control.key"
         />
+        <div
+          class="input-error"
+          *ngIf="
+            form.get(control.key)?.touched &&
+            form.get(control.key)?.hasError('required')
+          "
+        >
+          {{ control.value.label }} is required
+        </div>
+        <div
+          class="input-error"
+          *ngIf="
+            form.get(control.key)?.touched &&
+            form.get(control.key)?.hasError('email')
+          "
+        >
+          Please enter a valid email
+        </div>
+        <div
+          class="input-error"
+          *ngIf="
+            form.get(control.key)?.touched &&
+            form.get(control.key)?.hasError('minlength')
+          "
+        >
+          {{ control.value.label }} must be at least
+          {{
+            form.get(control.key)?.getError("minlength")?.requiredLength
+          }}
+          characters long
+        </div>
 
         <ng-container *ngSwitchCase="'select'">
           <select [formControlName]="control.key" [id]="control.key">
@@ -42,6 +73,6 @@
         </ng-container>
       </ng-container>
     </div>
-    <button type="submit">Save</button>
+    <button [disabled]="form.invalid" type="submit">Save</button>
   </form>
 </div>
