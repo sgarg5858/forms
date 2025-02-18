@@ -1,0 +1,47 @@
+<div class="action-buttons">
+  <button
+    mat-raised-button
+    (click)="formLoadingTrigger.next('user')"
+    type="button"
+  >
+    Load User Form
+  </button>
+  <button
+    mat-raised-button
+    (click)="formLoadingTrigger.next('company')"
+    type="button"
+  >
+    Load Company Form
+  </button>
+</div>
+<div *ngIf="formConfig$ | async as formConfig">
+  <form [formGroup]="form" (ngSubmit)="submitForm()">
+    <h2>{{ formConfig.description }}</h2>
+    <div
+      class="form-field"
+      *ngFor="let control of formConfig.controls | keyvalue"
+    >
+      <label [for]="control.key">{{ control.value.label }}</label>
+      <ng-container [ngSwitch]="control.value.controlType">
+        <input
+          *ngSwitchCase="'input'"
+          [formControlName]="control.key"
+          [type]="control.value.type"
+          [id]="control.key"
+        />
+
+        <ng-container *ngSwitchCase="'select'">
+          <select [formControlName]="control.key" [id]="control.key">
+            <option
+              *ngFor="let option of control.value.options"
+              [value]="option.value"
+            >
+              {{ option.label }}
+            </option>
+          </select>
+        </ng-container>
+      </ng-container>
+    </div>
+    <button type="submit">Save</button>
+  </form>
+</div>

@@ -17,6 +17,13 @@ const routes: Routes = [
       ).then((m) => m.ReactiveFormExampleModule),
   },
   {
+    path: 'dynamic-form',
+    loadChildren: () =>
+      import(
+        './dynamic-forms/dynamic-forms.module'
+      ).then((m) => m.DynamicFormsModule),
+  },
+  {
     path:'',
     pathMatch:'full',
     redirectTo:'reactive-form'
