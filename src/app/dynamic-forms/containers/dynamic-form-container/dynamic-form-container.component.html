@@ -17,10 +17,7 @@
 <div *ngIf="formConfig$ | async as formConfig">
   <form [formGroup]="form" (ngSubmit)="submitForm()">
     <h2>{{ formConfig.description }}</h2>
-    <div
-      class="form-field"
-      *ngFor="let control of formConfig.controls | keyvalue"
-    >
+    <ng-container *ngFor="let control of formConfig.controls | keyvalue">
       <ng-container
         [ngComponentOutlet]="
           dynamicControlResolver.resolve(control.value.controlType)
@@ -59,7 +56,7 @@
         {{ form.get(control.key)?.getError("minlength")?.requiredLength }}
         characters long
       </div>
-    </div>
+    </ng-container>
     <button [disabled]="form.invalid" type="submit">Save</button>
   </form>
 </div>
