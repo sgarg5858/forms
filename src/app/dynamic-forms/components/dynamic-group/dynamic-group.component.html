@@ -1,0 +1,17 @@
+<ng-container [formGroup]="formGroup">
+  <fieldset [formGroupName]="control.controlKey">
+    <legend>{{ control.controlConfig.label }}</legend>
+    <ng-container
+      *ngFor="let control of control.controlConfig.controls | keyvalue"
+    >
+      <ng-container
+        [ngComponentOutlet]="
+          dynamicControlResolver.resolve(control.value.controlType)
+        "
+        [ngComponentOutletInjector]="
+          control.key | controlInjector : control.value
+        "
+      ></ng-container>
+    </ng-container>
+  </fieldset>
+</ng-container>

@@ -34,6 +34,32 @@
         "required": true
       }
     },
+    "socialProfiles":{
+      "controlType":"group",
+      "label":"Social Profiles",
+      "controls":{
+        "linkedIn": {
+          "controlType": "input",
+          "type": "text",
+          "label": "Linkedin profile",
+          "value": "",
+          "validators": {
+            "required": true,
+            "minLength": 2
+          }
+        },
+          "twitter": {
+          "controlType": "input",
+          "type": "text",
+          "label": "Twitter  Profile",
+          "value": "",
+          "validators": {
+            "required": true,
+            "minLength": 2
+          }
+        }
+      }
+    },
     "termsAndConditions": {
       "controlType": "checkbox",
       "label": "Terms and Conditions",

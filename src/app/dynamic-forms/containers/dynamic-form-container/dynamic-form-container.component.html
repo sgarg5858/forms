@@ -21,7 +21,6 @@
       class="form-field"
       *ngFor="let control of formConfig.controls | keyvalue"
     >
-
       <ng-container
         [ngComponentOutlet]="
           dynamicControlResolver.resolve(control.value.controlType)
@@ -29,9 +28,7 @@
         [ngComponentOutletInjector]="
           control.key | controlInjector : control.value
         "
-        
       ></ng-container>
-
 
       <div
         class="input-error"

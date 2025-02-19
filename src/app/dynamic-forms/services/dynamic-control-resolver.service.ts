@@ -3,6 +3,7 @@ import { DynamicInputComponent } from '../components/dynamic-input/dynamic-input
 import { DynamicSelectComponent } from '../components/dynamic-select/dynamic-select.component';
 import { DynamicControl } from '../interfaces/control';
 import { DynamicCheckboxComponent } from '../components/dynamic-checkbox/dynamic-checkbox.component';
+import { DynamicGroupComponent } from '../components/dynamic-group/dynamic-group.component';
 
 type DynamicControlMap = {
   [T in DynamicControl['controlType']]: Type<any>;
@@ -15,7 +16,8 @@ export class DynamicControlResolver {
   private controlComponents: DynamicControlMap = {
     input: DynamicInputComponent,
     select: DynamicSelectComponent,
-    checkbox: DynamicCheckboxComponent
+    checkbox: DynamicCheckboxComponent,
+    group: DynamicGroupComponent,
   };
   constructor() {}
   resolve(controlType: keyof DynamicControlMap): Type<any> {

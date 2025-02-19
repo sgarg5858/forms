@@ -8,6 +8,7 @@ import { DynamicInputComponent } from './components/dynamic-input/dynamic-input.
 import { DynamicSelectComponent } from './components/dynamic-select/dynamic-select.component';
 import { ControlInjectorPipe } from './pipes/control-injector.pipe';
 import { DynamicCheckboxComponent } from './components/dynamic-checkbox/dynamic-checkbox.component';
+import { DynamicGroupComponent } from './components/dynamic-group/dynamic-group.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { DynamicCheckboxComponent } from './components/dynamic-checkbox/dynamic-
     DynamicSelectComponent,
     ControlInjectorPipe,
     DynamicCheckboxComponent,
+    DynamicGroupComponent,
   ],
   imports: [
     CommonModule,

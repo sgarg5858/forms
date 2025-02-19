@@ -35,13 +35,34 @@ export class DynamicFormContainerComponent implements OnInit {
   private buildForm(controls: DynamicFormConfig['controls']) {
     this.form = new FormGroup({});
     Object.keys(controls).forEach((key) => {
-      const validators = this.resolveValidators(controls[key]);
-      this.form.addControl(
-        key,
-        new FormControl(controls[key].value, { validators })
-      );
+      this.buildControl(key, controls[key], this.form);
     });
   }
+
+  private buildControlGroup(controlKey: string, controls: DynamicFormConfig['controls'] | undefined, parentForm: FormGroup)
+  {
+    if(!controls) return;
+    const nestedFormGroup = new FormGroup({});
+    Object.keys(controls).forEach((key) => {
+      this.buildControl(key, controls[key], nestedFormGroup);
+    });
+    parentForm.addControl(controlKey, nestedFormGroup);
+  }
+
+  private buildControl(
+    controlKey: string,
+    config: DynamicControl,
+    form: FormGroup
+  ) {
+    if(config.controlType === 'group')
+    {
+      this.buildControlGroup(controlKey, config.controls,form);
+      return;
+    }
+    const validators = this.resolveValidators(config);
+    form.addControl(controlKey, new FormControl(config.value, { validators }));
+  }
+
   resolveValidators({ validators = {} }: DynamicControl) {
     return (Object.keys(validators) as Array<keyof typeof validators> | []).map(
       (validatorKey) => {
