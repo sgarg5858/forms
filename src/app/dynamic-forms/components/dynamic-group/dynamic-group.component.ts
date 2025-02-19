@@ -1,9 +1,16 @@
 import { Component, HostBinding, inject } from '@angular/core';
-import { DynamicControlBase, dynamicParentControlProvider } from '../dynamic-control-base/dynamic-control-base';
+import {
+  DynamicControlBase,
+  dynamicParentControlProvider,
+} from '../dynamic-control-base/dynamic-control-base';
 import { DynamicControlResolver } from '../../services/dynamic-control-resolver.service';
 import { CommonModule } from '@angular/common';
 import { MaterialComponentsModule } from 'src/app/material-components/material-components.module';
-import { ReactiveFormsModule } from '@angular/forms';
+import {
+  AbstractControl,
+  FormGroup,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { ControlInjectorPipe } from '../../pipes/control-injector.pipe';
 
 @Component({
@@ -11,12 +18,16 @@ import { ControlInjectorPipe } from '../../pipes/control-injector.pipe';
   templateUrl: './dynamic-group.component.html',
   styleUrls: ['./dynamic-group.component.scss'],
   standalone: true,
-  imports: [CommonModule, MaterialComponentsModule, ReactiveFormsModule,ControlInjectorPipe],
-  viewProviders: [
-    dynamicParentControlProvider
+  imports: [
+    CommonModule,
+    MaterialComponentsModule,
+    ReactiveFormsModule,
+    ControlInjectorPipe,
   ],
+  viewProviders: [dynamicParentControlProvider],
 })
 export class DynamicGroupComponent extends DynamicControlBase {
   @HostBinding('class') override class = 'form-field';
   dynamicControlResolver = inject(DynamicControlResolver);
+  override formContol: AbstractControl = new FormGroup({});
 }

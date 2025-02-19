@@ -26,62 +26,11 @@ export class DynamicFormContainerComponent implements OnInit {
         this.httpClient
           .get<DynamicFormConfig>(`/assets/${value}.form.json`)
           .pipe(
-            tap(({ controls }: DynamicFormConfig) => this.buildForm(controls))
+            tap(() => {
+              this.form = new FormGroup({});
+            })
           )
       )
-    );
-  }
-
-  private buildForm(controls: DynamicFormConfig['controls']) {
-    this.form = new FormGroup({});
-    Object.keys(controls).forEach((key) => {
-      this.buildControl(key, controls[key], this.form);
-    });
-  }
-
-  private buildControlGroup(controlKey: string, controls: DynamicFormConfig['controls'] | undefined, parentForm: FormGroup)
-  {
-    if(!controls) return;
-    const nestedFormGroup = new FormGroup({});
-    Object.keys(controls).forEach((key) => {
-      this.buildControl(key, controls[key], nestedFormGroup);
-    });
-    parentForm.addControl(controlKey, nestedFormGroup);
-  }
-
-  private buildControl(
-    controlKey: string,
-    config: DynamicControl,
-    form: FormGroup
-  ) {
-    if(config.controlType === 'group')
-    {
-      this.buildControlGroup(controlKey, config.controls,form);
-      return;
-    }
-    const validators = this.resolveValidators(config);
-    form.addControl(controlKey, new FormControl(config.value, { validators }));
-  }
-
-  resolveValidators({ validators = {} }: DynamicControl) {
-    return (Object.keys(validators) as Array<keyof typeof validators> | []).map(
-      (validatorKey) => {
-        const validatorValue = validators[validatorKey];
-        if (validatorKey === 'required') {
-          return Validators.required;
-        }
-        if (validatorKey === 'email') {
-          return Validators.email;
-        }
-        if (validatorKey === 'requiredTrue') {
-          return Validators.requiredTrue;
-        }
-        if (validatorKey === 'minLength') {
-          if (typeof validatorValue === 'number')
-            return Validators.minLength(validatorValue);
-        }
-        return Validators.nullValidator;
-      }
     );
   }
   submitForm() {
