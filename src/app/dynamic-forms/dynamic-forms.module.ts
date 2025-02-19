@@ -4,25 +4,17 @@ import { MaterialComponentsModule } from '../material-components/material-compon
 import { DynamicFormContainerComponent } from './containers/dynamic-form-container/dynamic-form-container.component';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
-import { DynamicInputComponent } from './components/dynamic-input/dynamic-input.component';
-import { DynamicSelectComponent } from './components/dynamic-select/dynamic-select.component';
 import { ControlInjectorPipe } from './pipes/control-injector.pipe';
-import { DynamicCheckboxComponent } from './components/dynamic-checkbox/dynamic-checkbox.component';
-import { DynamicGroupComponent } from './components/dynamic-group/dynamic-group.component';
 
 @NgModule({
   declarations: [
     DynamicFormContainerComponent,
-    DynamicInputComponent,
-    DynamicSelectComponent,
-    ControlInjectorPipe,
-    DynamicCheckboxComponent,
-    DynamicGroupComponent,
   ],
   imports: [
     CommonModule,
     MaterialComponentsModule,
     ReactiveFormsModule,
+    ControlInjectorPipe,
     RouterModule.forChild([
       {
         path: '',

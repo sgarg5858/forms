@@ -4,6 +4,7 @@ import { CONTROL_DATA } from '../control-data.token';
 
 @Pipe({
   name: 'controlInjector',
+  standalone: true,
 })
 export class ControlInjectorPipe implements PipeTransform {
   injector = inject(Injector);

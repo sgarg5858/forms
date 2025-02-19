@@ -6,7 +6,7 @@
     >
       <ng-container
         [ngComponentOutlet]="
-          dynamicControlResolver.resolve(control.value.controlType)
+          dynamicControlResolver.resolve(control.value.controlType) | async
         "
         [ngComponentOutletInjector]="
           control.key | controlInjector : control.value
