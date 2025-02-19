@@ -20,6 +20,7 @@ export interface DynamicControl<T = string> {
   options?: DynamicOption[];
   validators?: Partial<Record<ValidatorKeys, unknown>>;
   controls?: DynamicFormConfig['controls']
+  order:number
 }
 export interface DynamicFormConfig {
   description: string;

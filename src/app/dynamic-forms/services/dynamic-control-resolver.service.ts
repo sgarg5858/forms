@@ -4,6 +4,7 @@ import { DynamicSelectComponent } from '../components/dynamic-select/dynamic-sel
 import { DynamicControl } from '../interfaces/control';
 import { DynamicCheckboxComponent } from '../components/dynamic-checkbox/dynamic-checkbox.component';
 import { DynamicGroupComponent } from '../components/dynamic-group/dynamic-group.component';
+import { KeyValue } from '@angular/common';
 
 type DynamicControlMap = {
   [T in DynamicControl['controlType']]: Type<any>;
@@ -22,5 +23,9 @@ export class DynamicControlResolver {
   constructor() {}
   resolve(controlType: keyof DynamicControlMap): Type<any> {
     return this.lazyControlComponents[controlType];
+  }
+  comparatorFn(a:KeyValue<string,DynamicControl>,b:KeyValue<string,DynamicControl>):number
+  {
+    return a.value.order - b.value.order;
   }
 }

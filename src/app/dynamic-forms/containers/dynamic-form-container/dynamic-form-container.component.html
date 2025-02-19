@@ -17,7 +17,12 @@
 <div *ngIf="formConfig$ | async as formConfig">
   <form [formGroup]="form" (ngSubmit)="submitForm()">
     <h2>{{ formConfig.description }}</h2>
-    <ng-container *ngFor="let control of formConfig.controls | keyvalue">
+    <ng-container
+      *ngFor="
+        let control of formConfig.controls
+          | keyvalue : dynamicControlResolver.comparatorFn
+      "
+    >
       <ng-container
         [ngComponentOutlet]="
           dynamicControlResolver.resolve(control.value.controlType)
