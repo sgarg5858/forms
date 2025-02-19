@@ -4,9 +4,17 @@ import { MaterialComponentsModule } from '../material-components/material-compon
 import { DynamicFormContainerComponent } from './containers/dynamic-form-container/dynamic-form-container.component';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DynamicInputComponent } from './components/dynamic-input/dynamic-input.component';
+import { DynamicSelectComponent } from './components/dynamic-select/dynamic-select.component';
+import { ControlInjectorPipe } from './pipes/control-injector.pipe';
 
 @NgModule({
-  declarations: [DynamicFormContainerComponent],
+  declarations: [
+    DynamicFormContainerComponent,
+    DynamicInputComponent,
+    DynamicSelectComponent,
+    ControlInjectorPipe,
+  ],
   imports: [
     CommonModule,
     MaterialComponentsModule,
