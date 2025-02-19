@@ -12,8 +12,9 @@ import { DynamicControlResolver } from '../../services/dynamic-control-resolver.
 })
 export class DynamicFormContainerComponent implements OnInit {
   constructor(
-    public dynamicControlResolver:DynamicControlResolver,
-    private httpClient: HttpClient) {}
+    public dynamicControlResolver: DynamicControlResolver,
+    private httpClient: HttpClient
+  ) {}
 
   formLoadingTrigger = new Subject<'user' | 'company'>();
   protected formConfig$!: Observable<DynamicFormConfig>;
@@ -35,26 +36,32 @@ export class DynamicFormContainerComponent implements OnInit {
     this.form = new FormGroup({});
     Object.keys(controls).forEach((key) => {
       const validators = this.resolveValidators(controls[key]);
-      this.form.addControl(key, new FormControl(controls[key].value,{validators}));
+      this.form.addControl(
+        key,
+        new FormControl(controls[key].value, { validators })
+      );
     });
-
   }
-  resolveValidators({ validators = {}}: DynamicControl) {
-    return (Object.keys(validators) as Array<keyof typeof validators> | [] ).map((validatorKey) => {
-      const validatorValue = validators[validatorKey];
-      if (validatorKey === 'required') {
-        return Validators.required;
+  resolveValidators({ validators = {} }: DynamicControl) {
+    return (Object.keys(validators) as Array<keyof typeof validators> | []).map(
+      (validatorKey) => {
+        const validatorValue = validators[validatorKey];
+        if (validatorKey === 'required') {
+          return Validators.required;
+        }
+        if (validatorKey === 'email') {
+          return Validators.email;
+        }
+        if (validatorKey === 'requiredTrue') {
+          return Validators.requiredTrue;
+        }
+        if (validatorKey === 'minLength') {
+          if (typeof validatorValue === 'number')
+            return Validators.minLength(validatorValue);
+        }
+        return Validators.nullValidator;
       }
-      if (validatorKey === 'email') {
-        return Validators.email;
-      }
-      if (validatorKey === 'minLength') {
-        if (typeof validatorValue === 'number')
-          return Validators.minLength(validatorValue); 
-      
-      }
-      return Validators.nullValidator;
-    });
+    );
   }
   submitForm() {
     console.log(this.form.value);

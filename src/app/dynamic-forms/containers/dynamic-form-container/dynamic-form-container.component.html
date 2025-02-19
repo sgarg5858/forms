@@ -21,7 +21,6 @@
       class="form-field"
       *ngFor="let control of formConfig.controls | keyvalue"
     >
-      <label [for]="control.key">{{ control.value.label }}</label>
 
       <ng-container
         [ngComponentOutlet]="

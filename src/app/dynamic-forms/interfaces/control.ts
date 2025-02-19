@@ -10,7 +10,7 @@ type CustomValidators = {
 export type ValidatorKeys = keyof Omit< typeof Validators & CustomValidators, "compose" | "composeAsync" | "prototype">;
 
 export interface DynamicControl<T = string> {
-  controlType: 'input' | 'select';
+  controlType: 'input' | 'select' | 'checkbox';
   label: string;
   value: T | null;
   type?: string;

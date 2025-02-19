@@ -7,6 +7,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { DynamicInputComponent } from './components/dynamic-input/dynamic-input.component';
 import { DynamicSelectComponent } from './components/dynamic-select/dynamic-select.component';
 import { ControlInjectorPipe } from './pipes/control-injector.pipe';
+import { DynamicCheckboxComponent } from './components/dynamic-checkbox/dynamic-checkbox.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { ControlInjectorPipe } from './pipes/control-injector.pipe';
     DynamicInputComponent,
     DynamicSelectComponent,
     ControlInjectorPipe,
+    DynamicCheckboxComponent,
   ],
   imports: [
     CommonModule,
