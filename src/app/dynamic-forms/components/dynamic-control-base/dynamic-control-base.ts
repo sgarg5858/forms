@@ -50,9 +50,17 @@ export class DynamicControlBase implements OnInit, OnDestroy {
     }
   }
   ngOnDestroy(): void {
-    (this.parentGroupDirective.control as FormGroup).removeControl(
-      this.control.controlKey
-    );
+    if(this.parentGroupDirective.control instanceof FormArray){
+      const index = (this.parentGroupDirective.control as FormArray).controls.indexOf(
+        this.formContol
+      );
+      (this.parentGroupDirective.control as FormArray).removeAt(index);
+    }
+    if(this.parentGroupDirective.control instanceof FormGroup){
+      (this.parentGroupDirective.control as FormGroup).removeControl(
+        this.control.controlKey
+      );
+    }
   }
 
   protected resolveValidators({ validators = {} }: DynamicControl) {

@@ -39,4 +39,11 @@ export class DynamicArrayComponent extends DynamicControlBase {
     }
     (<FormArray>this.formContol).push(new FormControl(''));
   }
+  removeControl(index: number) {
+    if(this.controls.length === 1) {
+      return;
+    }
+    this.controls.splice(index, 1);
+    (<FormArray>this.formContol).removeAt(index);
+  }
 }

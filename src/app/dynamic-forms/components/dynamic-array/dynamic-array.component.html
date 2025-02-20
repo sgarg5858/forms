@@ -5,6 +5,13 @@
       [ngComponentOutlet]="dynamicControlResolver.resolve(control.controlType)"
       [ngComponentOutletInjector]="i | controlInjector : control"
     ></ng-container>
+    <button
+    type="button"
+    (click)="removeControl(i)"
+    *ngIf="interactive"
+  >
+    -
+  </button>
   </ng-container>
   <button
     type="button"
