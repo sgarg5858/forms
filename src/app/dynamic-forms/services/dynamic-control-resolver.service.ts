@@ -28,6 +28,6 @@ export class DynamicControlResolver {
   }
   comparatorFn(a:KeyValue<string,DynamicControl>,b:KeyValue<string,DynamicControl>):number
   {
-    return a.value.order - b.value.order;
+    return a.value.order! - b.value.order!;
   }
 }

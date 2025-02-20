@@ -70,6 +70,14 @@
       "controlType": "array",
       "label": "Phone Numbers",
       "order": 4,
+      "interactive": {
+        "buttonText": "Add Phone Number",
+        "controlTemplate":{
+          "controlType": "input",
+          "label": "Other Phone Number",
+          "value":""
+        }
+      },
       "controls": [
         {
           "controlType": "input",

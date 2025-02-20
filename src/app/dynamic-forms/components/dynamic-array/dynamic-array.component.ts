@@ -3,6 +3,7 @@ import { Component, HostBinding, inject } from '@angular/core';
 import {
   AbstractControl,
   FormArray,
+  FormControl,
   ReactiveFormsModule,
 } from '@angular/forms';
 import {
@@ -27,5 +28,15 @@ export class DynamicArrayComponent extends DynamicControlBase {
   override formContol: AbstractControl = new FormArray([]);
   protected get controls() {
     return this.control.controlConfig.controls as DynamicControl[];
+  }
+  protected get interactive() {
+    return this.control.controlConfig.interactive;
+  }
+  addControl() {
+    const controlTemplate = this.interactive?.controlTemplate;
+    if (controlTemplate) {
+      this.controls.push(controlTemplate);
+    }
+    (<FormArray>this.formContol).push(new FormControl(''));
   }
 }
