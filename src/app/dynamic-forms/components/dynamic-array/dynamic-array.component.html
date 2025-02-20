@@ -1,0 +1,13 @@
+<fieldset [formArrayName]="control.controlKey">
+  <legend>{{ control.controlConfig.label }}</legend>
+  <ng-container *ngFor="let control of controls;let i = index">
+    <ng-container
+      [ngComponentOutlet]="
+        dynamicControlResolver.resolve(control.controlType)
+      "
+      [ngComponentOutletInjector]="
+        i | controlInjector : control
+      "
+    ></ng-container>
+  </ng-container>
+</fieldset>

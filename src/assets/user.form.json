@@ -66,6 +66,24 @@
         }
       }
     },
+    "phoneNumbers:": {
+      "controlType": "array",
+      "label": "Phone Numbers",
+      "order": 4,
+      "controls": [
+        {
+          "controlType": "input",
+          "type": "text",
+          "label": "Phone Number",
+          "value": "",
+          "order": 1,
+          "validators": {
+            "required": true,
+            "minLength": 2
+          }
+        }
+      ]
+    },
     "termsAndConditions": {
       "controlType": "checkbox",
       "label": "Terms and Conditions",

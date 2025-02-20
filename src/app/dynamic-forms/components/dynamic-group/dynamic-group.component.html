@@ -2,7 +2,7 @@
   <legend>{{ control.controlConfig.label }}</legend>
   <ng-container
     *ngFor="
-      let control of control.controlConfig.controls
+      let control of controls
         | keyvalue : dynamicControlResolver.comparatorFn
     "
   >

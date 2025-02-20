@@ -13,13 +13,13 @@ export type ValidatorKeys = keyof Omit<
 >;
 
 export interface DynamicControl<T = string> {
-  controlType: 'input' | 'select' | 'checkbox' | 'group';
+  controlType: 'input' | 'select' | 'checkbox' | 'group' | 'array';
   label: string;
   value: T | null;
   type?: string;
   options?: DynamicOption[];
   validators?: Partial<Record<ValidatorKeys, unknown>>;
-  controls?: DynamicFormConfig['controls']
+  controls?: DynamicFormConfig['controls'] | DynamicControl[];
   order:number
 }
 export interface DynamicFormConfig {

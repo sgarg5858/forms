@@ -32,6 +32,9 @@ export class DynamicFormContainerComponent implements OnInit {
           )
       )
     );
+    setTimeout(() => {
+      console.log(this.form)
+    },2000)
   }
   submitForm() {
     console.log(this.form.value);

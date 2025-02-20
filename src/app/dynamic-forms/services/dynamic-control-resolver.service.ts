@@ -5,6 +5,7 @@ import { DynamicControl } from '../interfaces/control';
 import { DynamicCheckboxComponent } from '../components/dynamic-checkbox/dynamic-checkbox.component';
 import { DynamicGroupComponent } from '../components/dynamic-group/dynamic-group.component';
 import { KeyValue } from '@angular/common';
+import { DynamicArrayComponent } from '../components/dynamic-array/dynamic-array.component';
 
 type DynamicControlMap = {
   [T in DynamicControl['controlType']]: Type<any>;
@@ -19,6 +20,7 @@ export class DynamicControlResolver {
     select: DynamicSelectComponent,
     checkbox: DynamicCheckboxComponent,
     group: DynamicGroupComponent,
+    array: DynamicArrayComponent
   };
   constructor() {}
   resolve(controlType: keyof DynamicControlMap): Type<any> {

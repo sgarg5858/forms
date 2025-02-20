@@ -9,6 +9,7 @@ import { CONTROL_DATA } from '../../control-data.token';
 import {
   AbstractControl,
   ControlContainer,
+  FormArray,
   FormControl,
   FormGroup,
   Validators,
@@ -34,10 +35,19 @@ export class DynamicControlBase implements OnInit, OnDestroy {
   parentGroupDirective = inject(ControlContainer);
 
   ngOnInit(): void {
-    (this.parentGroupDirective.control as FormGroup).addControl(
-      this.control.controlKey,
-      this.formContol
-    );
+    if(this.parentGroupDirective.control instanceof FormArray)
+    {
+      (this.parentGroupDirective.control as FormArray).push(
+        this.formContol
+      );
+    }
+    else
+    {
+      (this.parentGroupDirective.control as FormGroup).addControl(
+        this.control.controlKey,
+        this.formContol
+      );
+    }
   }
   ngOnDestroy(): void {
     (this.parentGroupDirective.control as FormGroup).removeControl(

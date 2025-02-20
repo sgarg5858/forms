@@ -12,6 +12,7 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { ControlInjectorPipe } from '../../pipes/control-injector.pipe';
+import { DynamicFormConfig } from '../../interfaces/control';
 
 @Component({
   selector: 'app-dynamic-group',
@@ -27,7 +28,10 @@ import { ControlInjectorPipe } from '../../pipes/control-injector.pipe';
   viewProviders: [dynamicParentControlProvider],
 })
 export class DynamicGroupComponent extends DynamicControlBase {
-  @HostBinding('class') override class = 'form-field';
+  @HostBinding('class') override class = 'form-field-group';
   dynamicControlResolver = inject(DynamicControlResolver);
   override formContol: AbstractControl = new FormGroup({});
+  protected get controls() {
+    return this.control.controlConfig.controls as DynamicFormConfig['controls'];
+  }
 }
