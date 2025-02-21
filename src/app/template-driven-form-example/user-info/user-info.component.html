@@ -6,34 +6,22 @@
       (reset)="resetForm($event)"
     >
       <h2>User Info</h2>
-      <mat-form-field appearance="outline">
-        <mat-label>Enter your First name</mat-label>
+      <div class="form-field" appearance="outline">
+        <label>Enter your First name</label>
         <input
-          matInput
           #firstName="ngModel"
           name="firstName"
           required
-          minlength="2"
+          minlength="4"
           [bannedWords]="bannedWords"
           [(ngModel)]="user.firstName"
           placeholder="Your First name"
         />
 
-        <mat-error *ngIf="firstName.dirty && firstName.hasError('required')">
-          First name is required
-        </mat-error>
+        <app-input-error *ngIf="firstName.dirty" [errors]="firstName.errors"></app-input-error>
 
-        <mat-error *ngIf="firstName.touched && firstName.hasError('minlength')">
-          First name should atleast contain
-          {{ firstName.getError("minlength")?.requiredLength }} letters
-        </mat-error>
-
-        <mat-error
-          *ngIf="firstName.touched && firstName.hasError('bannedWords')"
-        >
-          {{ firstName.getError("bannedWords") }}
-        </mat-error>
-      </mat-form-field>
+       
+      </div>
 
       <mat-form-field appearance="outline">
         <mat-label>Enter your Last name</mat-label>

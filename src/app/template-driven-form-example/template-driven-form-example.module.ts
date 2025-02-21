@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { MaterialComponentsModule } from '../material-components/material-components.module';
 import { ValidatorsModule } from '../validators/validators.module';
+import { ErrorModule } from '../error/error.module';
 
 
 
@@ -15,6 +16,7 @@ import { ValidatorsModule } from '../validators/validators.module';
   imports: [
     CommonModule,FormsModule,
     MaterialComponentsModule,
+    ErrorModule,
     RouterModule.forChild([{
       path:'',component:UserInfoComponent
     }]),

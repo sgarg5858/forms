@@ -9,7 +9,7 @@ import { ControlContainer, NgForm } from '@angular/forms';
 export class UserInfoComponent implements AfterViewInit {
   bannedWords = ['test', 'demo', 'xyz'];
   user = {
-    firstName: 'Sanjay',
+    firstName: '',
     lastName: 'Garg',
     emailAddress: 'sgarg5858@gmail.com',
     contactNumber: '9041421558',
