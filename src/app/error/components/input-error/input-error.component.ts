@@ -19,7 +19,7 @@ export class InputErrorComponent {
 
   protected errorsMap = inject(VALIDATION_ERROR_MESSAGES);
 
-  trackByFn(index: number, item: KeyValue<string,any>): string {
+  trackByFn(_: number, item: KeyValue<string,any>): string {
     return item.key;
   }
 }
