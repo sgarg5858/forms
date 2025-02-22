@@ -19,7 +19,7 @@ export class UserInfoComponent implements AfterViewInit {
     firstName: '',
     lastName: '',
     emailAddress: '',
-    contactNumber: '90414',
+    contactNumber: '',
     dateOfBirth: '12/05/1998',
     nationality: 'Indian',
     password: {

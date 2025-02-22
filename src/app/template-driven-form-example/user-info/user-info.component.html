@@ -90,7 +90,11 @@
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
 
-      <fieldset [ngModelGroup]="'password'" passwordShouldMatch>
+      <fieldset
+        [ngModelGroup]="'password'"
+        passwordShouldMatch
+        withoutValidationErrors
+      >
         <legend>Your Password:</legend>
 
         <mat-form-field appearance="outline">
@@ -169,13 +173,7 @@
         >
           Reset
         </button>
-        <button
-          mat-raised-button
-          color="primary"
-          type="submit"
-        >
-          Submit
-        </button>
+        <button mat-raised-button color="primary" type="submit">Submit</button>
       </mat-card-actions>
     </form>
   </mat-card>

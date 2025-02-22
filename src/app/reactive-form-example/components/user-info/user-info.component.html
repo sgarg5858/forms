@@ -102,18 +102,6 @@
             formControlName="confirmPassword"
           />
         </mat-form-field>
-
-        <mat-error
-          *ngIf="
-            userInfo.get('password')?.get('confirmPassword')?.dirty &&
-            userInfo
-              .get('password')
-              ?.get('confirmPassword')
-              ?.hasError('passwordsDontMatch')
-          "
-        >
-          Passwords do not match
-        </mat-error>
       </fieldset>
 
       <fieldset [formGroupName]="'skills'" *ngIf="skills$ | async as skills">
