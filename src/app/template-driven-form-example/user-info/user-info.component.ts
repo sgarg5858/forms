@@ -1,23 +1,30 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { ControlContainer, NgForm } from '@angular/forms';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import {  NgForm } from '@angular/forms';
+import { ErrorStateMatcher, OnTouchedErrorStateMatcher } from 'src/app/error/error-state-matcher.service';
 
 @Component({
   selector: 'app-user-info',
   templateUrl: './user-info.component.html',
   styleUrls: ['./user-info.component.scss'],
+  providers:[
+    {
+      provide:ErrorStateMatcher,
+      useClass:OnTouchedErrorStateMatcher
+    }
+  ]
 })
 export class UserInfoComponent implements AfterViewInit {
   bannedWords = ['test', 'demo', 'xyz'];
   user = {
     firstName: '',
-    lastName: 'Garg',
-    emailAddress: 'sgarg5858@gmail.com',
-    contactNumber: '9041421558',
+    lastName: '',
+    emailAddress: '',
+    contactNumber: '90414',
     dateOfBirth: '12/05/1998',
     nationality: 'Indian',
     password: {
       password: '1234',
-      confirmPassword: '1234',
+      confirmPassword: '14',
     },
     currentAddress: {
       postcode: 'E12121',
