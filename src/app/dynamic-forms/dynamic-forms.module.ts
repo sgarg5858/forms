@@ -5,6 +5,7 @@ import { DynamicFormContainerComponent } from './containers/dynamic-form-contain
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ControlInjectorPipe } from './pipes/control-injector.pipe';
+import { ErrorModule } from '../error/error.module';
 
 @NgModule({
   declarations: [
@@ -12,6 +13,7 @@ import { ControlInjectorPipe } from './pipes/control-injector.pipe';
   ],
   imports: [
     CommonModule,
+    ErrorModule,
     MaterialComponentsModule,
     ReactiveFormsModule,
     ControlInjectorPipe,

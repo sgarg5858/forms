@@ -6,16 +6,17 @@ import { MaterialComponentsModule } from '../material-components/material-compon
 import { ReactiveFormsModule } from '@angular/forms';
 import { DirectivesModule } from '../directives/directives.module';
 import { CustomFormComponentsModule } from '../custom-form-components/custom-form-components.module';
-
+import { ErrorModule } from '../error/error.module';
 @NgModule({
   declarations: [UserInfoComponent],
   imports: [
     CommonModule,
+    ErrorModule,
     ReactiveFormsModule,
     RouterModule.forChild([{ path: '', component: UserInfoComponent }]),
     MaterialComponentsModule,
     DirectivesModule,
-    CustomFormComponentsModule
+    CustomFormComponentsModule,
   ],
 })
 export class ReactiveFormExampleModule {}

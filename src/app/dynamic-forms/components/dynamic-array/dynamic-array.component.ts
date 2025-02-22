@@ -1,25 +1,19 @@
-import { CommonModule } from '@angular/common';
 import { Component, HostBinding, inject } from '@angular/core';
-import {
-  AbstractControl,
-  FormArray,
-  FormControl,
-  ReactiveFormsModule,
-} from '@angular/forms';
+import { AbstractControl, FormArray, FormControl } from '@angular/forms';
 import {
   DynamicControlBase,
   dynamicParentControlProvider,
+  sharedDynamicControlImports,
 } from '../dynamic-control-base/dynamic-control-base';
 import { DynamicControlResolver } from '../../services/dynamic-control-resolver.service';
 import { DynamicControl } from '../../interfaces/control';
-import { ControlInjectorPipe } from '../../pipes/control-injector.pipe';
 
 @Component({
   selector: 'app-dynamic-array',
   templateUrl: './dynamic-array.component.html',
   styleUrls: ['./dynamic-array.component.scss'],
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, ControlInjectorPipe],
+  imports: [...sharedDynamicControlImports],
   viewProviders: [dynamicParentControlProvider],
 })
 export class DynamicArrayComponent extends DynamicControlBase {
@@ -40,7 +34,7 @@ export class DynamicArrayComponent extends DynamicControlBase {
     (<FormArray>this.formContol).push(new FormControl(''));
   }
   removeControl(index: number) {
-    if(this.controls.length === 1) {
+    if (this.controls.length === 1) {
       return;
     }
     this.controls.splice(index, 1);

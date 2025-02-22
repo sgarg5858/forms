@@ -20,7 +20,8 @@ import { ErrorModule } from '../error/error.module';
     RouterModule.forChild([{
       path:'',component:UserInfoComponent
     }]),
-    ValidatorsModule
+    ValidatorsModule,
+  
   ]
 })
 export class TemplateDrivenFormExampleModule { }

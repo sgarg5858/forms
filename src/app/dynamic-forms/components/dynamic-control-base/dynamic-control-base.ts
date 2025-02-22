@@ -12,9 +12,16 @@ import {
   FormArray,
   FormControl,
   FormGroup,
+  ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
 import { DynamicControl } from '../../interfaces/control';
+import { CommonModule } from '@angular/common';
+import { ControlInjectorPipe } from '../../pipes/control-injector.pipe';
+import { ErrorModule } from 'src/app/error/error.module';
+
+
+export const sharedDynamicControlImports = [CommonModule, ReactiveFormsModule, ControlInjectorPipe,ErrorModule];
 
 export const dynamicParentControlProvider = {
   //since we are using useExisting, we are telling angular to use the existing instance of FormGroupDirective

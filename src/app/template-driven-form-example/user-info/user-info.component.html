@@ -17,14 +17,10 @@
           [(ngModel)]="user.firstName"
           placeholder="Your First name"
         />
-
-        <app-input-error *ngIf="firstName.dirty" [errors]="firstName.errors"></app-input-error>
-
-       
       </div>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Enter your Last name</mat-label>
+      <div class="form-field">
+        <label>Enter your Last name</label>
         <input
           matInput
           #lastname="ngModel"
@@ -34,17 +30,10 @@
           [(ngModel)]="user.lastName"
           placeholder="Your Last name"
         />
-        <mat-error *ngIf="lastname.touched && lastname.hasError('required')">
-          Last name is required
-        </mat-error>
-        <mat-error *ngIf="lastname.touched && lastname.hasError('minlength')">
-          Last name should atleast contain
-          {{ lastname.getError("minlength")?.requiredLength }} letters
-        </mat-error>
-      </mat-form-field>
+      </div>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Enter your Email Address</mat-label>
+      <div class="form-field">
+        <label>Enter your Email Address</label>
         <input
           matInput
           name="emailAddress"
@@ -56,17 +45,10 @@
           placeholder="Your Email Address"
           [ngModelOptions]="{ updateOn: 'blur' }"
         />
-        <mat-hint *ngIf="emailCtrl.pending">
+        <div class="input-hint" *ngIf="emailCtrl.pending">
           We are checking your email....
-        </mat-hint>
-        <mat-error
-          *ngIf="
-            !emailCtrl.pending && emailCtrl.hasError('emailAlreadyRegistered')
-          "
-        >
-          Seems like this email is already registered
-        </mat-error>
-      </mat-form-field>
+        </div>
+      </div>
 
       <mat-form-field appearance="outline">
         <mat-label>Enter your Contact number</mat-label>
@@ -125,21 +107,13 @@
         <mat-form-field appearance="outline">
           <mat-label>Confirm your password</mat-label>
           <input
-           type="password"
+            type="password"
             matInput
             #confirmPassword="ngModel"
             required
             name="confirmPassword"
             [(ngModel)]="user.password.confirmPassword"
           />
-          <mat-error
-            *ngIf="
-              confirmPassword.touched &&
-              confirmPassword.hasError('passwordsDontMatch')
-            "
-          >
-            Passwords do not match
-          </mat-error>
         </mat-form-field>
       </fieldset>
 
